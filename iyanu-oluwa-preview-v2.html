@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IYANU-OLUWA Cooperative Preview</title>
+<style>
+:root{--g:#047857;--gd:#065f46;--gs:#ecfdf5;--bg:#f5f7f6;--b:#e2e8e5;--muted:#6b7771}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#17201c;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+.top{height:72px;background:#fff;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:11px;color:var(--gd);font-weight:800}.logo{width:42px;height:42px;border:1.5px solid var(--g);border-radius:50%;background:var(--gs);display:grid;place-items:center}
+.logo svg{width:30px}.nav{display:flex;gap:4px}.nav button{border:0;background:none;padding:10px 13px;border-radius:9px;color:#53605a;cursor:pointer}.nav button.active,.nav button:hover{background:var(--gs);color:var(--gd)}
+main{max-width:1200px;margin:auto;padding:30px 22px 60px}.page{display:none}.page.active{display:block}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:22px}h1{font-size:28px;margin:0 0 5px}h2{font-size:20px;margin:0 0 5px}.muted{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card,.panel{background:#fff;border:1px solid var(--b);border-radius:14px;padding:19px}.label{font-size:13px;color:var(--muted);margin-bottom:9px}.value{font-size:25px;font-weight:800}
+.panel{padding:0;margin-top:18px;overflow:hidden}.panelhead{padding:17px 19px;border-bottom:1px solid var(--b);display:flex;justify-content:space-between;align-items:center}
+table{width:100%;border-collapse:collapse}th,td{padding:14px 17px;border-bottom:1px solid #edf1ef;text-align:left;font-size:14px}th{font-size:11px;color:var(--muted);text-transform:uppercase;background:#fafbfa}.status{display:inline-block;padding:5px 9px;border-radius:99px;background:var(--gs);color:var(--gd);font-size:12px;font-weight:700}.money{white-space:nowrap;font-weight:750}
+.small,.ghost,.primary{border:0;border-radius:9px;padding:9px 13px;cursor:pointer}.small,.ghost{background:#eef2ef;color:var(--gd)}.primary{background:var(--g);color:#fff;font-weight:700}.primary:hover{background:var(--gd)}
+.search{border:1px solid var(--b);border-radius:9px;padding:10px 12px;min-width:240px}.txlist{padding:10px 19px}.tx{display:flex;justify-content:space-between;padding:15px 2px;border-bottom:1px solid #edf1ef}.tx:last-child{border:0}
+.profile{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.avatar{width:58px;height:58px;border-radius:50%;background:var(--gs);color:var(--gd);display:grid;place-items:center;font-weight:800;font-size:19px}.profilehead{display:flex;gap:14px;align-items:center;margin-bottom:20px}.details{display:grid;grid-template-columns:1fr 1fr;gap:12px}.detail{background:#f8faf9;padding:12px;border-radius:9px}.detail label{display:block;font-size:10px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}.cats{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:17px}.cat{display:flex;justify-content:space-between;border:1px solid var(--b);border-radius:9px;padding:10px 11px;font-size:13px}
+.form{background:#fff;border:1px solid var(--b);border-radius:14px;padding:22px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field label{display:block;font-size:12px;font-weight:700;margin-bottom:6px}.field input,.field select{width:100%;padding:11px;border:1px solid var(--b);border-radius:9px}.lines{margin-top:18px;padding-top:17px;border-top:1px solid var(--b)}.line{display:grid;grid-template-columns:1fr 150px 38px;gap:8px;margin:8px 0}.line select,.line input{padding:10px;border:1px solid var(--b);border-radius:8px}.line button{border:0;border-radius:8px;background:#fcebea;color:#a51d16}.total{display:flex;justify-content:space-between;background:var(--gs);padding:14px;border-radius:9px;margin-top:12px}.actions{display:flex;justify-content:flex-end;gap:9px;margin-top:17px}.toast{position:fixed;right:20px;bottom:20px;background:#12352b;color:#fff;padding:13px 16px;border-radius:10px;display:none}
+@media(max-width:800px){.top{height:auto;flex-wrap:wrap;padding:12px 15px}.nav{width:100%;overflow:auto}.grid{grid-template-columns:1fr 1fr}.profile{grid-template-columns:1fr}.fields,.details{grid-template-columns:1fr}.header{flex-direction:column}.search{width:100%;min-width:0}.panel{overflow:auto}table{min-width:720px}}
+.modal{display:none;position:fixed;inset:0;background:#0006;z-index:30;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.modalbox{width:min(520px,100%);background:#fff;border-radius:16px;padding:22px;box-shadow:0 20px 60px #0003}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.close{border:0;background:#eef2ef;border-radius:50%;width:34px;height:34px;cursor:pointer}.notice{margin-top:10px;padding:10px 12px;border-radius:9px;background:#ecfdf5;color:#065f46;font-size:13px}.notice.error{background:#fff2f0;color:#b42318}.total.invalid{background:#fff2f0;color:#b42318}.empty{text-align:center;padding:28px;color:#6b7771}</style></head><body>
+<header class="top"><div class="brand"><div class="logo"><svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/><rect x="29" y="34" width="6" height="16" rx="1.5" fill="#78350f"/><circle cx="32" cy="24" r="13" fill="#047857"/><circle cx="22" cy="30" r="8" fill="#047857"/><circle cx="42" cy="30" r="8" fill="#047857"/></svg></div><div>IYANU-OLUWA<div class="muted">Cooperative Multipurpose Society</div></div></div>
+<nav class="nav"><button class="active" data-page="dashboard">Dashboard</button><button data-page="members">Members</button><button data-page="transactions">Transactions</button><button data-page="categories">Categories</button></nav></header>
+<main>
+<section id="dashboard" class="page active"><div class="header"><div><h1>Dashboard</h1><div class="muted">Overview of cooperative activity</div></div></div>
+<div class="grid"><div class="card"><div class="label">Active Members</div><div class="value">3</div></div><div class="card"><div class="label">Total Collected</div><div class="value">₦19,000.00</div></div><div class="card"><div class="label">Transactions</div><div class="value">2</div></div><div class="card"><div class="label">Categories</div><div class="value">13</div></div></div>
+<div class="panel"><div class="panelhead"><div><h2>Recent Transactions</h2><div class="muted">Latest member payments</div></div><button class="small" onclick="showPage('transactions')">View all</button></div><div class="txlist"><div class="tx"><div><b>Adebayo Folake</b><div class="muted">2026-09-20 · CASH</div></div><b>₦7,000.00</b></div><div class="tx"><div><b>Chukwuemeka Obi</b><div class="muted">2026-09-20 · BANK TRANSFER</div></div><b>₦7,000.00</b></div></div></div></section>
+<section id="members" class="page"><div class="header"><div><h1>Members</h1><div class="muted">Manage cooperative members and view contribution history</div></div><button class="primary" onclick="alert('Add Member is a preview-only action.')">+ Add Member</button></div>
+<div class="panel"><div class="panelhead"><h2>Member Directory</h2><input id="search" class="search" placeholder="Search name or membership ID"></div><table><thead><tr><th>Membership ID</th><th>Member</th><th>Occupation</th><th>Status</th><th>Total Paid</th><th></th></tr></thead><tbody><tr data-name="adebayo folake" data-id="iy-0001">
+      <td><b>IY-0001</b></td><td><b>Adebayo Folake</b><div class="muted">+2348012340001</div></td>
+      <td>Trader</td><td><span class="status">ACTIVE</span></td>
+      <td class="money">₦7,000.00</td><td><button class="small" onclick="openMember('m1')">View</button></td></tr><tr data-name="chukwuemeka obi" data-id="iy-0002">
+      <td><b>IY-0002</b></td><td><b>Chukwuemeka Obi</b><div class="muted">+2348012340002</div></td>
+      <td>Civil Servant</td><td><span class="status">ACTIVE</span></td>
+      <td class="money">₦7,000.00</td><td><button class="small" onclick="openMember('m2')">View</button></td></tr><tr data-name="ngozi eze" data-id="iy-0003">
+      <td><b>IY-0003</b></td><td><b>Ngozi Eze</b><div class="muted">+2348012340003</div></td>
+      <td>Teacher</td><td><span class="status">ACTIVE</span></td>
+      <td class="money">₦0.00</td><td><button class="small" onclick="openMember('m3')">View</button></td></tr></tbody></table></div></section>
+<section id="transactions" class="page"><div class="header"><div><h1>Transactions</h1><div class="muted">Contribution and repayment records</div></div><button class="primary" onclick="openPayment('m1')">+ Record Payment</button></div><div class="panel"><div class="panelhead"><h2>Recent Transactions</h2></div><div class="txlist"><div class="tx"><div><b>Adebayo Folake</b><div class="muted">2026-09-20 · CASH</div></div><b>₦7,000.00</b></div><div class="tx"><div><b>Chukwuemeka Obi</b><div class="muted">2026-09-20 · BANK TRANSFER</div></div><b>₦7,000.00</b></div></div></div></section>
+<section id="categories" class="page"><div class="header"><div><h1>Categories</h1><div class="muted">Contribution categories used by the cooperative</div></div></div><div class="panel"><div class="panelhead"><h2>All Categories</h2></div><div class="cats"><div class="cat"><span>Shares</span><b>₦0.00</b></div><div class="cat"><span>Savings</span><b>₦0.00</b></div><div class="cat"><span>Special Savings</span><b>₦0.00</b></div><div class="cat"><span>Development Levy</span><b>₦0.00</b></div><div class="cat"><span>Loan Repaid</span><b>₦0.00</b></div><div class="cat"><span>Loan Interest</span><b>₦0.00</b></div><div class="cat"><span>Entrance Fee</span><b>₦0.00</b></div><div class="cat"><span>Stationeries</span><b>₦0.00</b></div><div class="cat"><span>Empowerment Repaid</span><b>₦0.00</b></div><div class="cat"><span>Committee Gift</span><b>₦0.00</b></div><div class="cat"><span>Special Deposit</span><b>₦0.00</b></div><div class="cat"><span>Investment Repaid</span><b>₦0.00</b></div><div class="cat"><span>Investment Income</span><b>₦0.00</b></div></div></div></section>
+<section id="detail" class="page"><button class="ghost" onclick="showPage('members')">← Back to Members</button><div id="detailBody" style="margin-top:17px"></div></section>
+<section id="payment" class="page">
+<div class="header"><div><h1>Record New Payment</h1><div class="muted">Select a member, enter the total, then allocate it across categories.</div></div></div>
+<div class="form"><div class="fields">
+<div class="field"><label>Select Member</label><select id="payMember"></select></div>
+<div class="field"><label>Total Amount</label><input id="payTotal" type="number" min="0" step="0.01" placeholder="Enter total amount"></div>
+<div class="field"><label>Payment Method</label><select id="payMethod"><option value="BANK_TRANSFER">Bank Transfer</option><option value="CASH">Cash</option></select></div>
+<div class="field"><label>Date</label><input id="payDate" type="date"></div>
+</div>
+<div class="lines"><h3>Category Breakdown</h3><div class="muted" style="margin:5px 0 12px">Add one or more categories and enter the amount assigned to each.</div>
+<div id="paymentLines"></div><button class="small" onclick="addPaymentLine()">+ Add Category</button>
+<div id="breakdownBox" class="total"><span>Breakdown Total</span><b id="breakdownTotal">₦0.00</b></div>
+<div id="paymentNotice" class="notice error">Enter a total amount and make the breakdown equal it.</div>
+</div><div class="actions"><button class="ghost" onclick="showPage('members')">Cancel</button><button id="savePaymentBtn" class="primary" disabled onclick="savePayment()">Record Payment &amp; Send SMS</button></div></div>
+</section>
+</main><div id="memberModal" class="modal"><div class="modalbox">
+<div class="modalhead"><div><h2>Add New Member</h2><div class="muted">Create a new cooperative member.</div></div><button class="close" onclick="closeMemberModal()">×</button></div>
+<div class="fields">
+<div class="field"><label>Name</label><input id="newName" placeholder="Full name"></div>
+<div class="field"><label>Occupation</label><input id="newOccupation" placeholder="Occupation"></div>
+<div class="field"><label>Status</label><select id="newStatus"><option value="ACTIVE">Active</option><option value="INACTIVE">Inactive</option></select></div>
+<div class="field"><label>Total Paid</label><input id="newPaid" type="number" min="0" step="0.01" value="0"></div>
+</div><div class="actions"><button class="ghost" onclick="closeMemberModal()">Cancel</button><button class="primary" onclick="addMember()">Add Member</button></div>
+</div></div>
+<div id="toast" class="toast"></div>
+<script>
+const C=["Shares","Savings","Special Savings","Development Levy","Loan Repaid","Loan Interest","Entrance Fee","Stationeries","Empowerment Repaid","Committee Gift","Special Deposit","Investment Repaid","Investment Income"];
+let M=[
+{id:"m1",membershipId:"IY-0001",fullName:"Adebayo Folake",phone:"+2348012340001",occupation:"Trader",status:"ACTIVE",initialPaid:0},
+{id:"m2",membershipId:"IY-0002",fullName:"Chukwuemeka Obi",phone:"+2348012340002",occupation:"Civil Servant",status:"ACTIVE",initialPaid:0},
+{id:"m3",membershipId:"IY-0003",fullName:"Ngozi Eze",phone:"+2348012340003",occupation:"Teacher",status:"ACTIVE",initialPaid:0}];
+let T=[
+{id:"t1",memberId:"m1",date:"2026-09-20",method:"CASH",lines:[{category:"Savings",amount:5000},{category:"Shares",amount:2000}]},
+{id:"t2",memberId:"m2",date:"2026-09-20",method:"BANK_TRANSFER",lines:[{category:"Savings",amount:3000},{category:"Loan Repaid",amount:4000}]}];
+
+const money=n=>"₦"+(Number(n)||0).toLocaleString("en-NG",{minimumFractionDigits:2,maximumFractionDigits:2});
+const member=id=>M.find(x=>x.id===id);
+const sum=a=>a.reduce((x,y)=>x+(Number(y.amount)||0),0);
+function paid(m){return (m.initialPaid||0)+T.filter(t=>t.memberId===m.id).reduce((x,t)=>x+sum(t.lines),0)}
+function safe(x){return String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function showPage(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav button").forEach(x=>x.classList.toggle("active",x.dataset.page===id));scrollTo(0,0)}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+
+function render(){
+document.getElementById("statMembers").textContent=M.filter(x=>x.status==="ACTIVE").length;
+document.getElementById("statCollected").textContent=money(M.reduce((x,m)=>x+(m.initialPaid||0),0)+T.reduce((x,t)=>x+sum(t.lines),0));
+document.getElementById("statTransactions").textContent=T.length;
+document.getElementById("statCategories").textContent=C.length;
+
+let q=(document.getElementById("search")?.value||"").toLowerCase();
+document.getElementById("memberRows").innerHTML=M.filter(m=>m.fullName.toLowerCase().includes(q)||m.membershipId.toLowerCase().includes(q)).map(m=>`
+<tr><td><b>${m.membershipId}</b></td><td><b>${safe(m.fullName)}</b><div class="muted">${m.phone||"No phone"}</div></td>
+<td>${safe(m.occupation)}</td><td><span class="status ${m.status==="INACTIVE"?"inactive":""}">${m.status}</span></td>
+<td class="money">${money(paid(m))}</td><td><button class="small" onclick="openMember('${m.id}')">View</button></td></tr>`).join("")||'<tr><td colspan="6" class="empty">No members found.</td></tr>';
+
+let tx=T.slice().reverse().map(t=>{let m=member(t.memberId);return `<div class="tx"><div><b>${safe(m?.fullName||"Unknown")}</b><div class="muted">${t.date} · ${t.method==="BANK_TRANSFER"?"Bank Transfer":"Cash"} · ${t.lines.length} categor${t.lines.length===1?"y":"ies"}</div></div><b>${money(sum(t.lines))}</b></div>`}).join("");
+document.getElementById("allTx").innerHTML=tx||'<div class="empty">No transactions yet.</div>';
+document.getElementById("recentTx").innerHTML=tx||'<div class="empty">No transactions yet.</div>';
+
+let totals=Object.fromEntries(C.map(x=>[x,0]));
+T.forEach(t=>t.lines.forEach(l=>totals[l.category]=(totals[l.category]||0)+Number(l.amount||0)));
+document.getElementById("categoryList").innerHTML=C.map(c=>`<div class="cat"><span>${safe(c)}</span><b>${money(totals[c])}</b></div>`).join("");
+}
+document.getElementById("search").oninput=render;
+
+function openMember(id){
+let m=member(id), initials=m.fullName.split(/\s+/).map(x=>x[0]).slice(0,2).join("");
+let totals=Object.fromEntries(C.map(x=>[x,0]));
+T.filter(t=>t.memberId===id).forEach(t=>t.lines.forEach(l=>totals[l.category]+=Number(l.amount||0)));
+document.getElementById("detailBody").innerHTML=`<div class="profile"><div class="card"><div class="profilehead"><div class="avatar">${initials}</div><div><h1>${safe(m.fullName)}</h1><div class="muted">${m.membershipId} · <span class="status ${m.status==="INACTIVE"?"inactive":""}">${m.status}</span></div></div></div>
+<div class="details"><div class="detail"><label>Occupation</label>${safe(m.occupation)}</div><div class="detail"><label>Total Paid</label>${money(paid(m))}</div><div class="detail"><label>Phone</label>${m.phone||"—"}</div><div class="detail"><label>Status</label>${m.status}</div></div>
+<div class="actions"><button class="primary" onclick="openPayment('${m.id}')">Record New Payment</button></div></div>
+<div class="card"><h2>Category Breakdown</h2><div class="muted">Total paid by category</div><div class="cats">${C.map(c=>`<div class="cat"><span>${safe(c)}</span><b>${money(totals[c])}</b></div>`).join("")}</div></div></div>`;
+showPage("detail");
+}
+
+function openMemberModal(){document.getElementById("newName").value="";document.getElementById("newOccupation").value="";document.getElementById("newStatus").value="ACTIVE";document.getElementById("newPaid").value=0;document.getElementById("memberModal").classList.add("show")}
+function closeMemberModal(){document.getElementById("memberModal").classList.remove("show")}
+function addMember(){
+let name=document.getElementById("newName").value.trim(),occ=document.getElementById("newOccupation").value.trim(),status=document.getElementById("newStatus").value,paid0=Number(document.getElementById("newPaid").value)||0;
+if(!name){alert("Please enter the member name.");return}
+let n=M.length+1,id="m"+Date.now(),mid="IY-"+String(n).padStart(4,"0");while(M.some(x=>x.membershipId===mid)){n++;mid="IY-"+String(n).padStart(4,"0")}
+M.push({id,membershipId:mid,fullName:name,phone:"",occupation:occ,status,initialPaid:paid0});
+closeMemberModal();render();showPage("members");toast(name+" added successfully.");
+}
+
+function openPayment(pre){
+let s=document.getElementById("payMember");s.innerHTML='<option value="">Select a member</option>'+M.map(m=>`<option value="${m.id}">${safe(m.fullName)} — ${m.membershipId}</option>`).join("");
+s.value=pre||"";document.getElementById("payTotal").value="";document.getElementById("payMethod").value="BANK_TRANSFER";document.getElementById("payDate").value=new Date().toISOString().slice(0,10);
+document.getElementById("paymentLines").innerHTML="";addPaymentLine();checkBreakdown();showPage("payment");
+}
+function addPaymentLine(){
+let d=document.createElement("div");d.className="line";d.innerHTML=`<select class="lineCategory">${C.map(c=>`<option>${safe(c)}</option>`).join("")}</select><input class="lineAmount" type="number" min="0" step="0.01" placeholder="Amount"><button>×</button>`;
+d.querySelector("input").oninput=checkBreakdown;d.querySelector("button").onclick=()=>{d.remove();checkBreakdown()};document.getElementById("paymentLines").appendChild(d);checkBreakdown();
+}
+function checkBreakdown(){
+let total=Number(document.getElementById("payTotal").value)||0,bd=0;document.querySelectorAll(".lineAmount").forEach(x=>bd+=Number(x.value)||0);
+document.getElementById("breakdownTotal").textContent=money(bd);
+let box=document.getElementById("breakdownBox"),note=document.getElementById("paymentNotice"),btn=document.getElementById("savePaymentBtn"),ok=total>0&&Math.abs(total-bd)<.005;
+box.classList.toggle("invalid",!ok);btn.disabled=!ok;
+note.className=ok?"notice":"notice error";note.textContent=ok?"✓ Breakdown matches the total amount.":total<=0?"Enter a total amount first.":"Breakdown must equal "+money(total)+" (difference: "+money(Math.abs(total-bd))+").";
+}
+document.getElementById("payTotal").oninput=checkBreakdown;
+function savePayment(){
+let mid=document.getElementById("payMember").value,total=Number(document.getElementById("payTotal").value)||0,lines=[];
+document.querySelectorAll(".line").forEach(r=>{let a=Number(r.querySelector(".lineAmount").value)||0;if(a>0)lines.push({category:r.querySelector(".lineCategory").value,amount:a})});
+if(!mid){alert("Select a member.");return}if(!lines.length||Math.abs(sum(lines)-total)>.005){checkBreakdown();return}
+T.push({id:"t"+Date.now(),memberId:mid,date:document.getElementById("payDate").value,method:document.getElementById("payMethod").value,lines});
+let m=member(mid);render();openMember(mid);toast("Payment "+money(total)+" recorded for "+m.fullName+". SMS notification queued.");
+}
+function toast(msg){let x=document.getElementById("toast");x.textContent=msg;x.style.display="block";setTimeout(()=>x.style.display="none",3500)}
+render();
+</script></body></html>
